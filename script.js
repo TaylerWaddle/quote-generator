@@ -16,11 +16,6 @@ function hideLoadingSpinner() {
   quoteContainer.hidden = false;
   loader.hidden = true;
 }
-function setQuoteAndHideLoader() {
-  quoteText.textContent = quote.text;
-  hideLoadingSpinner();
-}
-
 function showNewQuote() {
   showLoadingSpinner();
   // Pick a random quote from API quotes array
@@ -41,7 +36,8 @@ function showNewQuote() {
   } else {
     quoteText.classList.remove("long-quote");
   }
-  setQuoteAndHideLoader();
+  quoteText.textContent = quote.text;
+  hideLoadingSpinner();
 }
 
 async function getQuotes() {
@@ -64,7 +60,7 @@ function tweetQuote() {
 }
 
 // Event Listeners
-newQuoteBtn.addEventListener("click", newQuote);
+newQuoteBtn.addEventListener("click", showNewQuote);
 twitterBtn.addEventListener("click", tweetQuote);
 
 // On Load
